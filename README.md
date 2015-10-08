@@ -1,0 +1,2 @@
+# DNSManifesto
+A DNS Manifesto
