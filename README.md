@@ -170,6 +170,15 @@ parent and child zones to synchronize. It scales quite poorly with
 large numbers of zones, and DNSSEC data can greatly increases the
 amount of data to periodically synchronize.
 
+### Protocol Debugging Support
+
+DNS has a very few tools for administrators to understand DNS
+problems. For example, the ServFail code is used to cover a huge
+number of possible problems without any details, meaning operators
+must try to infer the true problem. Likewise there are few methods
+that operators can use to figure out the state of the various servers,
+caches, and so on in the system.
+
 
 Stuff to Jettison
 -----------------
