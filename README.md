@@ -190,6 +190,7 @@ extreme prejudice.
 * Limitation of one query per message.
 * Class.
 * UDP.
+* Wildcards.
 
 
 Uncharted Continents
