@@ -32,7 +32,9 @@ understood by people, but also forms the basis that allows:
 
 The name space has a few decisions which might be different if it
 was created today (such as being case-insensitive, and being limited
-to ASCII alphanumeric symbols and dash), but it is basically great. Any future protocol/scheme should keep the namespace in current use with the DNS.
+to ASCII alphanumeric symbols and dash), but it is basically great.
+Any future protocol/scheme should keep the namespace in current use
+with the DNS.
 
 Both the separation of responsibility and the hierarchy in the name
 space allow DNS to be massively scalable on both an organizational and
@@ -57,14 +59,12 @@ moves the server load closer to where the data is consumed.
 
 ### Loose coherency
 
-Because of this caching and because of the use of several different sources in data publication, potentially operated by independent and collaborating entitires, different places of the Internet may have
+Because of this caching and because of the use of several different
+sources in data publication, potentially operated by independent and
+collaborating entitires, different places of the Internet may have
 slightly different views of the DNS at any given time. This "loose
 consistency" is an explicit trade-off of exact answers for
 performance, and is key to the scaling of DNS today.
-
-### Data completeness
-
-To avoid errors derived from partial information publication the new unit of data transfer must be the equivalent of today's RRsets rather than individual records.
 
 ### Data authentication
 
@@ -83,7 +83,10 @@ it to be ported to every system on the Internet. Vendors have been
 able to provide solutions in many different ways, while at the same
 time dedicated individuals or organizations can solve problems on
 their own.
-This also provides a low barrier to entry, which given the basic infrastructure nature of DNS, allows for a low barrier of entrance to deployment of new Internet services.
+
+This also provides a low barrier to entry, which given the basic
+infrastructure nature of DNS, allows for a low barrier of entrance to
+deployment of new Internet services.
 
 
 Decisions to Revisit
@@ -111,18 +114,22 @@ Vulnerabilities in the protocol itself are basically impossible to fix
 completely, resulting in long-lasting weaknesses in the wider
 Internet.
 
-The new minimum requisite features must include the capability to communicate Versions as well as capability negotiation between any two end-points.
+The new minimum requisite features must include the capability to
+communicate versions as well as capability negotiation between any two
+end-points.
 
 ### Denial of Service (Distributed and Otherwise)
 
-Like any other service on the Internet the DNS is vulnerable to denial of service attacks today. However, it is both
-the target of these attacks and used as an unwilling accomplice by
-those launching attacks on other systems.
+Like any other service on the Internet the DNS is vulnerable to denial
+of service attacks today. However, it is both the target of these
+attacks and used as an unwilling accomplice by those launching attacks
+on other systems.
 
 In order to defend against DoS attacks, DNS systems must be heavily
 over-provisioned, constantly monitored, or both. An ideal protocol
 would be able to defend itself against DoS and avoid being used as a
-vector to attack other systems. One feature to consider in this regard easing capability to provide end-point validation.
+vector to attack other systems. One feature to consider in this regard
+easing capability to provide end-point validation.
 
 ### Hints about the User
 
@@ -145,7 +152,8 @@ Currently there are no ways to express user preferences in the DNS. In
 addition to faster service, privacy concerns or other desires have no
 way to be declared and must be handled by later protocols.
 
-These two aspects are often in conflict so a solution must enable both under user Control.
+These two aspects are often in conflict, so a solution must enable
+both under user control.
 
 ### Missing Server Metadata
 
@@ -155,10 +163,11 @@ capabilities. The recursive resolvers and stub resolvers have only
 minimal ability to declare what they can do (limited to UDP buffer
 sizes and DNSSEC support) or how they are configured.
 
-This means that servers must infer how the various systems work, which is currently done by repeatedly scanning remote capabilities (e.g. EDNS buffer size adjustment).
-The lack of explicit information means that the process is inefficient and
-occasionally results in very sub-optimal behavior or even complete
-failure.
+This means that servers must infer how the various systems work, which
+is currently done by repeatedly scanning remote capabilities (for
+example EDNS buffer size adjustment).  The lack of explicit
+information means that the process is inefficient and occasionally
+results in very sub-optimal behavior or even complete failure.
 
 ### Missing Encryption
 
@@ -171,6 +180,12 @@ that servers act as proxies in the DNS architecture. For example,
 caching resolvers see the queries of stub resolvers. Without proxies
 the traffic analysis risk is still present, although different since
 then queries would need to come directly from end users' devices.
+
+### Data completeness
+
+To avoid errors derived from partial information publication the new
+unit of data transfer must be the equivalent of today's RRsets rather
+than individual records.
 
 ### Weak Data Synchronization Tools
 
