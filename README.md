@@ -239,6 +239,13 @@ to get DNS data closer to where it needs to be than relying on the
 routing system. Or, if DNS does interact with the routing world,
 perhaps there are smarter ways to do it.
 
+### Historical Data, Audit Trails
+
+Today the DNS always provides the latest & greatest versions of
+information. This matches the original intent of supporting other
+protocols need to map host names to IP addresses. However other uses
+may benefit from knowing prior values of DNS data.
+
 
 Here There Be Dragons
 ---------------------
