@@ -1,8 +1,5 @@
-A DNS Manifesto
-===============
+# Introduction
 
-Introduction
-------------
 The DNS protocol has been stretched in ways far beyond the original
 architecture. It continues to be pushed further, but at the same time
 is limited by old design decisions.
@@ -14,14 +11,12 @@ changes should:
 2. Throw away most of what DNS has gotten wrong
 3. Allow DNS to more easily evolve in the future
 
-
-Shoulders of Giants
--------------------
+# Shoulders of Giants
 The DNS has gotten many things right.
 
 [ talk about how the DNS is an old, successful protocol ]
 
-### Name space
+## Name space
 
 The DNS name space is straightforward: labels separated by dots.
 EXAMPLE.COM. IP6.ARPA. IETF.ORG. This simple abstraction is easily
@@ -41,7 +36,7 @@ space allow DNS to be massively scalable on both an organizational and
 a technological basis. Further, those responsible for any given name
 can use as many or as few resources to service that name as necessary.
 
-### Redundancy
+## Redundancy
 
 Each label in the DNS name space is unique. However, within each label
 the way the data is maintained and published is completely redundant.
@@ -51,22 +46,22 @@ queries about the label.
 This redundancy applies for every point in DNS. There is no single
 point of failure in the system.
 
-### Caching
+## Caching
 
 The DNS architecture allows various components to re-use information
 for a period of time. This caching is a key part of scaling, as it
 moves the server load closer to where the data is consumed.
 
-### Loose coherency
+## Loose coherency
 
 Because of this caching and because of the use of several different
 sources in data publication, potentially operated by independent and
-collaborating entitires, different places of the Internet may have
+collaborating entities, different places of the Internet may have
 slightly different views of the DNS at any given time. This "loose
 consistency" is an explicit trade-off of exact answers for
 performance, and is key to the scaling of DNS today.
 
-### Data authentication
+## Data authentication
 
 A relatively late addition to the DNS are the DNS Security Extensions
 (DNSSEC). This adds an authentication system to the data published in
@@ -76,7 +71,7 @@ meaning that it can be authenticated at any and every step as needed.
 While the details of DNSSEC are more complicated than they would be if
 designed today, the principle of securing the data itself is good.
 
-### Open Standards, Open Source Implementations
+## Open Standards, Open Source Implementations
 
 Open standards and open source implementations of the DNS have allowed
 it to be ported to every system on the Internet. Vendors have been
@@ -89,13 +84,12 @@ infrastructure nature of DNS, allows for a low barrier of entrance to
 deployment of new Internet services.
 
 
-Decisions to Revisit
---------------------
+# Decisions to Revisit
 The DNS has a lot of cruft, which is not surprising for a technology
 more than 30 years old that has been changed every few months in that
 time.
 
-### Protocol Inflexibility
+## Protocol Inflexibility
 
 The reason that this Manifesto is needed is at least partially because
 the DNS protocol itself is difficult to change.
@@ -118,7 +112,7 @@ The new minimum requisite features must include the capability to
 communicate versions as well as capability negotiation between any two
 end-points.
 
-### Denial of Service (Distributed and Otherwise)
+## Denial of Service (Distributed and Otherwise)
 
 Like any other service on the Internet the DNS is vulnerable to denial
 of service attacks today. However, it is both the target of these
@@ -131,7 +125,7 @@ would be able to defend itself against DoS and avoid being used as a
 vector to attack other systems. One feature to consider in this regard
 easing capability to provide end-point validation.
 
-### Hints about the User
+## Hints about the User
 
 Since DNS is used to locate servers, it is used by CDN and anyone
 wishing to provide a better user experience. Protocols that perform
@@ -155,7 +149,7 @@ way to be declared and must be handled by later protocols.
 These two aspects are often in conflict, so a solution must enable
 both under user control.
 
-### Missing Server Metadata
+## Missing Server Metadata
 
 The DNS has almost no information about the DNS servers themselves.
 There is no way for authoritative servers to publish their
@@ -169,7 +163,7 @@ example EDNS buffer size adjustment).  The lack of explicit
 information means that the process is inefficient and occasionally
 results in very sub-optimal behavior or even complete failure.
 
-### Missing Encryption
+## Missing Encryption
 
 At no point is any DNS data encrypted. Queries and answers are
 cleartext, as is zone data replicated between servers. This means that
@@ -181,13 +175,13 @@ caching resolvers see the queries of stub resolvers. Without proxies
 the traffic analysis risk is still present, although different since
 then queries would need to come directly from end users' devices.
 
-### Data completeness
+## Data completeness
 
 To avoid errors derived from partial information publication the new
 unit of data transfer must be the equivalent of today's RRsets rather
 than individual records.
 
-### Weak Data Synchronization Tools
+## Weak Data Synchronization Tools
 
 DNS has a protocol to share data between authoritative servers. This
 protocol has a number of limitations. It does not provide a way to add
@@ -196,7 +190,7 @@ parent and child zones to synchronize. It scales quite poorly with
 large numbers of zones, and DNSSEC data can greatly increases the
 amount of data to periodically synchronize.
 
-### Protocol Debugging Support
+## Protocol Debugging Support
 
 DNS has a very few tools for administrators to understand DNS
 problems. For example, the ServFail code is used to cover a huge
@@ -206,8 +200,7 @@ that operators can use to figure out the state of the various servers,
 caches, and so on in the system.
 
 
-Stuff to Jettison
------------------
+# Stuff to Jettison
 Some things just don't make sense and can probably be removed with
 extreme prejudice.
 
@@ -219,11 +212,10 @@ extreme prejudice.
 * Wildcards.
 
 
-Uncharted Continents
---------------------
+# Uncharted Continents
 There are other areas that might be explored.
 
-### Distributed Management
+## Distributed Management
 
 Currently a single label is managed by a single organization.
 Protocols like Bitcoin have proven that distributed management is
@@ -231,7 +223,7 @@ possible. This could be useful for politically contentious zones like
 the root zone, or act as an alternate model instead of a
 registry/registrar split for large zones.
 
-### Topology Awareness
+## Topology Awareness
 
 Many name servers use anycasting today, where a single IP address is
 served from separate physical locations. There may be alternate ways
@@ -239,7 +231,7 @@ to get DNS data closer to where it needs to be than relying on the
 routing system. Or, if DNS does interact with the routing world,
 perhaps there are smarter ways to do it.
 
-### Historical Data, Audit Trails
+## Historical Data, Audit Trails
 
 Today the DNS always provides the latest & greatest versions of
 information. This matches the original intent of supporting other
@@ -247,8 +239,7 @@ protocols need to map host names to IP addresses. However other uses
 may benefit from knowing prior values of DNS data.
 
 
-Here There Be Dragons
----------------------
+# Here There Be Dragons
 DNS is an important part of the Internet. It may not be more important
 than the number system, or the routing system, or the servers or other
 devices on the network. However, the DNS has a few features that make
@@ -268,8 +259,7 @@ technical folks in the DNS free reign, although this may not be true
 if technology changes appear to threaten their goals.
 
 
-Reboot the DNS!
----------------
+# Reboot the DNS!
 DNS can evolve.
 
 DNS can be changed in ways that work with old servers and software,
